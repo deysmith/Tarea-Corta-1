@@ -8,7 +8,7 @@
 
 import random
 import time
-import sys # Para calcular memoria aproximada
+import sys 
 
 # ---------------------------------------------------------------------------------------------------------------
 # Nombre: generateMatrix
@@ -127,7 +127,7 @@ def memory_usage(matriz):
 # NOTA IMPORTANTISIMA: El caso de 100000 elementos no se prueba aquí, ya que se haria
 # en el punto 5 con la comparación entre CountingSort y QuickSort.
 # --------------------------------------------------------------------------------------
-tamaños = [10,100, 1000] # con 100000 no me sirve
+tamaños = [10,100, 1000,10000] # con 100000 no me sirve
 
 for tamano in tamaños:
     print("\n-----------------------------------------------------------------------------------------")
