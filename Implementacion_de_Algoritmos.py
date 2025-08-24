@@ -1,4 +1,5 @@
 import random
+import time
 
 def generateMatrix(tamano):
     """
@@ -81,12 +82,40 @@ def mergeAux(izquierda, derecha):
     resultado.extend(derecha[j:])
     return resultado
 
+def countingSort(lista):
+    """
+    Ordena de forma ascendente los elementos dentro de una lista.
+
+    Parámetros:
+        lista (list): Lista que se desea ordenar.
+
+    Retorna:
+        list: Retorna la lista con sus elementos ordenados.
+    """
+    valor_maximo = max(lista) #Utilizando max para encontrar el valor máximo (el rango siempre es entre 1 y 1000), pero por si las moscas
+    
+    conteo = [0] * (valor_maximo + 1)
+    
+    for num in lista:
+        conteo[num] += 1
+        
+    lista_ordenada = []
+    
+    for i in range(len(conteo)):
+        lista_ordenada.extend([i] * conteo[i])
+        
+    return lista_ordenada
+
+
 #Parte de ejecución
-matriz = generateMatrix(13)
-#print(f"antes: {matriz}")
+matriz = generateMatrix(500)
+print(f"antes: {matriz}")
+inicio = time.time()
 for i in range(len(matriz)):
+    #matriz[i] = countingSort(matriz[i])
     matriz[i] = mergeSort(matriz[i])
     #quickSort(matriz[i], 0, len(matriz[i]) - 1) 
-    
+fin = time.time()
+print("Tiempo:", fin - inicio)
 print("finish")
 #print(f"despues: {matriz}")
