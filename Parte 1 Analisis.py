@@ -172,7 +172,7 @@ fila = [random.randint(1, 1000) for _ in range(100000)] #Estamos haciendo la com
 
 print("\n") 
 print("\n----------------------------------Comparación de CountingSort y QuickSort----------------------------------")
-print(f"\nTamaño de la matriz: {tamano}x{tamano}")
+print(f"\nTamaño de 100000")
 
 # -----------CountingSort-----------------
 print("--------------------------------------------------------")
