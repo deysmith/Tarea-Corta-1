@@ -120,10 +120,14 @@ def copiar_matriz(matriz):
 def memory_usage(matriz):
     return sys.getsizeof(matriz) + sum(sys.getsizeof(fila) for fila in matriz)
 
-# ----------------------------------
-# Tamaños de pruebas 
-# ----------------------------------
-tamaños = [10,100, 1000, 10000] # con 100000 no me sirve
+# --------------------------------------------------------------------------------------
+# Aquí estamos aplicando el punto 4:
+# Se realizan pruebas con números aleatorios en matrices de tamaños 100, 1000 y 10000.
+# Mostramos los resultados obtenidos en tiempo de ejecución y memoria utilizada.
+# NOTA IMPORTANTISIMA: El caso de 100000 elementos no se prueba aquí, ya que se haria
+# en el punto 5 con la comparación entre CountingSort y QuickSort.
+# --------------------------------------------------------------------------------------
+tamaños = [10,100, 1000] # con 100000 no me sirve
 
 for tamano in tamaños:
     print("\n-----------------------------------------------------------------------------------------")
@@ -131,7 +135,6 @@ for tamano in tamaños:
 
     matriz_original = generateMatrix(tamano)
     
-
     # ---------------- CountingSort ----------------
     matriz = copiar_matriz(matriz_original)
     inicio = time.time()
@@ -141,7 +144,7 @@ for tamano in tamaños:
         for fila in matriz:
             print(fila)
     else:
-        print("\n No se muestra la matriz por ser muy grande)")
+        print("\n No se muestra la matriz por ser muy grande")
 
     # Imprimir matriz ordenada
     for i in range(len(matriz)):
@@ -155,21 +158,33 @@ for tamano in tamaños:
         for fila in matriz:
             print(fila)
     
-    print(f"\nCountingSort -> Tiempo: {tiempo_counting:.6f}s | Memoria aprox: {memoria_counting} bytes")
+    print(f"\n               CountingSort \n Tiempo: {tiempo_counting:.6f}s | Memoria aprox: {memoria_counting} bytes")
     
-    # ---------------- QuickSort ----------------
-    #matriz = copiar_matriz(matriz_original)
-    #inicio = time.time()
-    #for i in range(len(matriz)):
-        #quickSort(matriz[i], 0, len(matriz[i])-1)
-    #fin = time.time()
-    #tiempo_quick = fin - inicio
-    #memoria_quick = memory_usage(matriz)
-    
-    #if tamano == 10:
-        #print("\nMatriz ordenada con QuickSort:")
-        #for fila in matriz:
-            #print(fila)
-    
-    #print(f"\nQuickSort   -> Tiempo: {tiempo_quick:.6f}s | Memoria aprox: {memoria_quick} bytes")
 
+
+# --------------------------------------------------------------------------------------
+# Aquí estamos aplicando el punto 5:
+# Comparar la eficiencia del algoritmo implementado CountingSort con otro QuickSort,
+# midiendo el tiempo de ejecución y el uso de memoria para el mismo conjunto de datos.
+# --------------------------------------------------------------------------------------
+
+fila = [random.randint(1, 1000) for _ in range(100000)] #Estamos haciendo la comparacion en fila y no en matrices como en los casos anteriores ya que el caso de una matriz de 100000x100000 para probar con 100000 elementos no se pudo hacer 
+
+print("\n") 
+print("\n----------------------------------Comparación de CountingSort y QuickSort----------------------------------")
+print(f"\nTamaño de la matriz: {tamano}x{tamano}")
+
+# -----------CountingSort-----------------
+print("--------------------------------------------------------")
+inicio = time.time()
+fila_ordenada_counting = countingSort(fila)
+fin = time.time()
+print(f"               CountingSort \n Tiempo: {fin - inicio:.6f}s | Memoria aprox: {sys.getsizeof(fila_ordenada_counting)} bytes")
+
+# --------QuickSort-------------
+print("--------------------------------------------------------")
+fila_quick = fila[:]  #  esto es para que tome todos los elementos de fila desde el inicio hasta el final osea una copia
+inicio = time.time()
+quickSort(fila_quick, 0, len(fila_quick)-1)
+fin = time.time()
+print(f"                QuickSort   \n Tiempo: {fin - inicio:.6f}s | Memoria aprox: {sys.getsizeof(fila_quick)} bytes\n")
