@@ -18,8 +18,6 @@ Las pruebas se realizaron sobre una lista de 10000 elementos.
 
 ---
 
----
-
 ## **Resultados de Búsqueda**
 
 Las pruebas se realizaron sobre una matriz de 500x500.
