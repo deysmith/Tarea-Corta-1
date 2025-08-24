@@ -27,18 +27,14 @@ def generateMatrix(tamano):
     return matriz"""
     return [[random.randint(1, 1000) for _ in range(tamano)] for _ in range(tamano)] # Reduce el tiempo a la mitad
 
-
-
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Nombre: quickSort(ordenamiento rápido)
-# Entradas: 
-#          lista - lista de números a ordenar
+# Entradas: lista - lista de números a ordenar
 #          bajo  - índice inicial de la lista o sublista
-#          alto   - índice final de la lista o sublista
+#          alto  - índice final de la lista o sublista
 # Restricciones:
 #  - La lista debe contener valores que se puedan comparar entre sí, como números o letras.
 #  - Los parámetros bajo y alto deben ser posiciones válidas dentro de la lista (ni negativas ni mayores que el tamaño de la lista).
-
 # Cómo funciona: Ordena la lista de manera recursiva usando el método QuickSort. 
 # Elige un número de la lista como referencia (pivote), mueve los números más pequeños a un lado y los más grandes al otro, y repite lo mismo con cada grupo hasta que todo quede ordenado.
 # Qué nos da de resultado: Modifica la lista original ordenándola de forma ascendente 
@@ -51,11 +47,9 @@ def quickSort(lista, bajo, alto):
         if indice_pivote - bajo < alto - indice_pivote:
             quickSort(lista, bajo, indice_pivote-1)
             bajo = indice_pivote + 1
-
         else:
             quickSort(lista, indice_pivote + 1, alto)
             alto = indice_pivote - 1
-
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Nombre: particion
@@ -66,7 +60,6 @@ def quickSort(lista, bajo, alto):
 def particion(lista, bajo, alto):
     pivote = lista[alto]
     i = bajo - 1
-
     for j in range(bajo, alto):
         if lista[j] < pivote:
             i += 1
@@ -74,16 +67,14 @@ def particion(lista, bajo, alto):
     lista[i+1], lista[alto] = lista[alto], lista[i+1]
     return i+1
 
-
-# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------
 # Nombre: countingSort
 # Entradas: lista - lista de números enteros a ordenar
 # Restricciones: los números de la lista deben ser enteros no negativos
-# Cómo funciona: 
-#   1. Encuentra el valor máximo de la lista
-#   2. Crea una lista de conteo de tamaño max+1
-#   3. Cuenta cuántas veces aparece cada número
-#   4. Reconstruye la lista ordenada usando la lista de conteo
+# Cómo funciona: Encuentra el valor máximo de la lista
+# Crea una lista de conteo de tamaño max+1
+# Cuenta cuántas veces aparece cada número
+# Reconstruye la lista ordenada usando la lista de conteo
 # Qué nos da de resultado: Devuelve una nueva lista con los elementos ordenados de forma ascendente
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------
 def countingSort(lista):
@@ -113,10 +104,9 @@ def copiar_matriz(matriz):
         copia.append(fila[:])  # copia independiente de la fila
     return copia
 
-
-# ----------------------------------
+# ---------------------------------------------------------------
 # Función para calcular memoria aproximada de la matriz
-# ----------------------------------
+# ---------------------------------------------------------------
 def memory_usage(matriz):
     return sys.getsizeof(matriz) + sum(sys.getsizeof(fila) for fila in matriz)
 
@@ -129,16 +119,16 @@ def memory_usage(matriz):
 # --------------------------------------------------------------------------------------
 tamaños = [10,100, 1000,10000] # con 100000 no me sirve
 
+print("\n------------------------------------------- ALGORITMO DE ORDENAMIENTO ------------------------------------------------------\n")
 for tamano in tamaños:
     print("\n-----------------------------------------------------------------------------------------")
     print(f"\nTamaño de la matriz: {tamano}x{tamano}")
 
     matriz_original = generateMatrix(tamano)
     
-    # ---------------- CountingSort ----------------
+    # CountingSort 
     matriz = copiar_matriz(matriz_original)
     inicio = time.time()
-    
     print("\n=== Matriz desordenada ===")
     if tamano == 10:
         for fila in matriz:
@@ -160,7 +150,6 @@ for tamano in tamaños:
     
     print(f"\n               CountingSort \n Tiempo: {tiempo_counting:.6f}s | Memoria aprox: {memoria_counting} bytes")
     
-
 
 # --------------------------------------------------------------------------------------
 # Aquí estamos aplicando el punto 5:
